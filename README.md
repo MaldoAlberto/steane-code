@@ -41,7 +41,9 @@ jupyter notebook steane_demo.ipynb
 ```
 
 In Colab, uncomment the `pip install` line in the first code cell.
-The notebook was tested with qiskit 2.2.3, qiskit-aer 0.17.2 and stim 1.14.0; all cells run in about 10 seconds.
+The notebook was tested with qiskit 2.2.3, qiskit-aer 0.17.2 and stim 1.14.0 (Python 3.9), and with qiskit 2.6.2,
+qiskit-aer 0.18.2 and stim 1.16.0 (Python 3.11); all cells run in about 10 seconds. Newer stim versions draw
+different random samples, so the simulated points move slightly; the exact curve and the conclusions do not.
 
 ## Files
 
@@ -51,6 +53,7 @@ The notebook was tested with qiskit 2.2.3, qiskit-aer 0.17.2 and stim 1.14.0; al
 | `build_demo.py` | Generates the notebook; `python3 build_demo.py --execute` rebuilds and runs it. |
 | `steane_sim.py` | Stand-alone simulation (stim + exact count) that writes `steane.json`. |
 | `steane.json` | Data behind the social-media figure: failure rate versus noise and break-even point. |
+| `figures/` | The social-media figure (`figures/images/`) and its script: `python3 figures/make_steane_beginner.py out`. |
 
 ## Related
 
