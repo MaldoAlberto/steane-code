@@ -155,8 +155,9 @@ A classical bit can only flip. A qubit can go wrong in two basic ways:
 - a **phase flip** ($Z$ error) leaves 0 and 1 alone but turns $|+\rangle$ into $|-\rangle$.
 
 A **$Y$ error** is both at once. Any small error on one qubit can be described as a mix of these.
-> Measuring the checks makes that mix "choose": no error, $X$, $Y$ or $Z$. So fixing just these three is
-> enough to fix any error, even a tiny rotation.
+Measuring the checks makes that mix "choose": no error, $X$, $Y$ or $Z$. So fixing just these three is
+enough to fix any error, even a tiny rotation.
+
 The cell below shows each error where it matters: a bit flip changes a 0 into a 1, while a phase flip is
 invisible when we read 0/1 and only shows up when we read in the $|+\rangle/|-\rangle$ basis (an H gate
 before measuring). In the output, `{'0': 1.0}` means the answer was 0 every time.
@@ -447,7 +448,7 @@ A **logical error** is an error the code can't see or fixes the wrong way, so th
 up changed. The **distance** of a code is the smallest number of physical errors that can change the logical
 qubit **without any check noticing**. For the Steane code that is 3 (for example $X$ on qubits 1, 2 and 3). A
 code of distance $d$ can always fix up to $(d-1)/2$ errors, so the Steane code fixes any **one** error. With
-two errors the checks do notice, but they point to the wrong qubit (Q6 shows this).
+two errors the checks do notice, but they point to the wrong qubit (the next cells show this).
 
 There is a bonus: the bit-flip checks and the phase-flip checks work independently (codes built this way are
 called **CSS codes**). So one bit flip **and** one phase flip, even on different qubits, are both fixed.
@@ -544,7 +545,8 @@ twice as steep.
 """),
 code(r"""
 ps = np.array([0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.15, 0.2, 0.3])
-sim_rate = np.array([failure_rate(p, seed=11 + i) for i, p in enumerate(ps)])
+sim_rate = np.array([failure_rate(p, shots=2_000_000 if p < 0.01 else 400_000, seed=11 + i)
+                     for i, p in enumerate(ps)])
 exact_rate = np.array([exact_failure_rate(p) for p in ps])
 
 fig, ax = plt.subplots(figsize=(6, 4))
@@ -763,13 +765,14 @@ lo, hi = 0.01, 0.1
 for _ in range(12):
     mid = (lo + hi) / 2
     lo, hi = (mid, hi) if noisy_failure(mid, mid, ROUNDS)[1] < no_code(mid, ROUNDS + 1) else (lo, mid)
-print(f"\nwith noisy checks the code helps below p ≈ {(lo + hi) / 2:.2f}  (Q8, perfect checks: about 0.08)")
+print(f"\nwith noisy checks (read the rounds together) the code helps below p ≈ {(lo + hi) / 2:.2f}"
+      "  (Q8, perfect checks: about 0.08)")
 """),
 meaning("noisy checks don't break the code, but they make it weaker: failures still fall like $p^2$, just "
         "with a bigger number in front, and the code helps over a smaller range. How you read the alarms "
         "matters as much as the hardware. Real machines go further: they repeat the checks many times, run "
         "the decoder in real time, protect the checks against spreading errors, and use codes that grow, such as "
-        "the **surface code** (qubits on a grid, each check on neighbours) or **qLDPC codes** (fewer qubits, "
+        "the **surface code** (qubits on a grid, each check on neighbors) or **qLDPC codes** (fewer qubits, "
         "longer-range links). That engineering, not the idea, is what the field is racing to finish."),
 # ------------------------------------------------------------------ wrap-up
 md(r"""
@@ -796,7 +799,8 @@ md(r"""
 The Steane code protects one qubit against one error. The machines being built now use codes that grow: the
 **surface code** puts qubits on a grid and gets better every time the grid grows, as long as the hardware is
 below its threshold. In 2024 Google's Willow chip showed exactly that: each step up in grid size cut the
-logical error rate roughly in half, with a decoder running in real time (Google Quantum AI, Nature 2025).
+logical error rate roughly in half, and a decoder kept up in real time at distance 5 (Google Quantum AI,
+Nature 2025).
 Repeated rounds of checks, real-time decoders and magic-state factories turn that into a computer. Those are
 the topics for the next notebooks.
 

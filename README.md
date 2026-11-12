@@ -26,8 +26,8 @@ No previous knowledge of error correction is needed: each new idea is explained 
 - A dynamic circuit (Qiskit) that finds and fixes all 21 single-qubit errors, tested from both |0_L⟩ and |+_L⟩.
 - A stim simulation checked against an exact count: about 16 p² failures, helping below about 8 % noise
   (perfect checks).
-- Noisy checks in a small memory experiment, with two decoders: the code still helps below about 5 %, and the
-  decoder that reads the rounds together fails about half as often.
+- Noisy checks in a small memory experiment, with two decoders: the code still helps below about 5 %, and at low
+  noise the decoder that reads the rounds together fails about half as often.
 - Transversal H, S and CNOT, and why the T gate needs magic states.
 
 The models are deliberately simple (noise on data qubits, noisy check answers). Errors spreading inside the
