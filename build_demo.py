@@ -93,14 +93,18 @@ We use three Python tools:
 - **Qiskit Aer** to run circuits many times, as a real device would,
 - **stim** to run very large numbers of noisy runs quickly (Q7).
 
-In a fresh environment, uncomment the first line. Then run the setup cells once. The last line prints the
+In Colab, the first lines install the missing packages for you (about a minute, only the first time). On your
+own computer, run `pip install -r requirements.txt` once before opening the notebook. Then run the setup cells once. The last line prints the
 versions; this notebook was tested with the ones shown in its saved output.
 
 A few cells are marked **Behind the scenes**. They hold the machinery and open collapsed in Jupyter
 (Colab and GitHub show them open). Run them, and skip reading them if you like.
 """),
 code(r"""
-# !pip install -q qiskit qiskit-aer stim numpy matplotlib pylatexenc
+import importlib.util, os, subprocess, sys
+if "COLAB_RELEASE_TAG" in os.environ and importlib.util.find_spec("stim") is None:   # Colab only: install once
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", "qiskit", "qiskit-aer", "stim", "pylatexenc"])
+
 import itertools
 
 import matplotlib.pyplot as plt

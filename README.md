@@ -40,7 +40,7 @@ pip install -r requirements.txt
 jupyter notebook steane_demo.ipynb
 ```
 
-In Colab, uncomment the `pip install` line in the first code cell.
+In Colab, the first code cell installs the missing packages automatically.
 The notebook was tested with qiskit 2.2.3, qiskit-aer 0.17.2 and stim 1.14.0 (Python 3.9), and with qiskit 2.6.2,
 qiskit-aer 0.18.2 and stim 1.16.0 (Python 3.11); all cells run in about 10 seconds. Newer stim versions draw
 different random samples, so the simulated points move slightly; the exact curve and the conclusions do not.
