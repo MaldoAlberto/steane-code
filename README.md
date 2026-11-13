@@ -55,6 +55,20 @@ different random samples, so the simulated points move slightly; the exact curve
 | `steane.json` | Data behind the social-media figure: failure rate versus noise and break-even point. |
 | `figures/` | The social-media figure (`figures/images/`) and its script: `python3 figures/make_steane_beginner.py out`. |
 
+## Contribute
+
+Three open tasks, from a first run to research:
+
+- [#1](https://github.com/MaldoAlberto/steane-code/issues/1) (good first issue): run 3 rounds of noisy checks
+  and compare the two decoders. No code changes needed.
+- [#2](https://github.com/MaldoAlberto/steane-code/issues/2) (good first issue): compare the Steane code with
+  the 3-qubit repetition code.
+- [#3](https://github.com/MaldoAlberto/steane-code/issues/3) (help wanted): circuit-level noise, with errors
+  inside the check circuits and flag qubits.
+
+Edit `build_demo.py` (it generates the notebook) and run `python3 build_demo.py --execute`. Questions, results
+and corrections are welcome as issues; if you share a plot, tag **@qalycat**.
+
 ## Related
 
 - [shor-resource-estimate](https://github.com/MaldoAlberto/shor-resource-estimate): how many physical qubits
