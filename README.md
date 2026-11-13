@@ -53,7 +53,7 @@ different random samples, so the simulated points move slightly; the exact curve
 | `build_demo.py` | Generates the notebook; `python3 build_demo.py --execute` rebuilds and runs it. |
 | `steane_sim.py` | Stand-alone simulation (stim + exact count) that writes `steane.json`. |
 | `steane.json` | Data behind the social-media figure: failure rate versus noise and break-even point. |
-| `figures/` | The social-media figure (`figures/images/`) and its script: `python3 figures/make_steane_beginner.py out`. |
+| `figures/` | The social-media figures (`figures/images/`) and their scripts, e.g. `python3 figures/make_steane_steps.py out`. |
 
 ## Contribute
 
